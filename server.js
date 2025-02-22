@@ -31,7 +31,7 @@ app.post('/analyze', upload.single('image'), async (req, res) => {
     }
 
     const model = genAI.getGenerativeModel({ model: 'gemini-1.5-pro' });
-    const prompt = 'Analyze this image and provide information about the waste or material shown.';
+    const prompt = 'Analyze the image and provide a detailed waste analysis. Identify the type of waste (e.g., e-waste, plastic waste, bio-waste, medical waste, etc.). Determine if the waste is hazardous. If hazardous, explain the specific risks. Provide detailed disposal instructions, specifying if it can be disposed of by a regular person or if a skilled professional is required. If professional disposal is necessary, mention the type of professional or facility needed.';
     const imagePart = fileToGenerativePart(req.file.buffer, req.file.mimetype);
 
     const result = await model.generateContent([prompt, imagePart]);
